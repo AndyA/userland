@@ -6,7 +6,6 @@ export LD_RUN_PATH="$prefix/lib"
 mkdir -p build/arm-linux/release/
 pushd build/arm-linux/release/
 cmake  \
-  -DCMAKE_INSTALL_PREFIX="$prefix" \
   -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ \
   -DCMAKE_TOOLCHAIN_FILE=../../../makefiles/cmake/toolchains/raspi-host.cmake \
   -DCMAKE_BUILD_TYPE=Release \
