@@ -769,6 +769,18 @@ static MMAL_COMPONENT_T *create_encoder_component(RASPIVID_STATE *state)
 
    }
 
+   if (1)
+   {
+      MMAL_PARAMETER_UINT32_T param = {{ MMAL_PARAMETER_INTRAPERIOD, sizeof(param)}, 100};
+      status = mmal_port_parameter_set(encoder_output, &param.hdr);
+      if (status != MMAL_SUCCESS)
+      {
+         vcos_log_error("Unable to set intraperiod");
+         goto error;
+      }
+
+   }
+
    if (mmal_port_parameter_set_boolean(encoder_input, MMAL_PARAMETER_VIDEO_IMMUTABLE_INPUT, state->immutableInput) != MMAL_SUCCESS)
    {
       vcos_log_error("Unable to set immutable input flag");
