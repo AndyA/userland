@@ -1,0 +1,16 @@
+#/bin/sh
+mkdir -p build/arm-linux/release/
+pushd build/arm-linux/release/
+cmake  \
+  -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ \
+  -DCMAKE_TOOLCHAIN_FILE=../../../makefiles/cmake/toolchains/raspi-host.cmake  \
+  -DCMAKE_BUILD_TYPE=Release  \
+  ../../..
+make
+
+if [ "$1" != "" ]; then
+ sudo make install DESTDIR=$1
+fi
+
+popd
+
